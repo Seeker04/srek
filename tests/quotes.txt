@@ -1,0 +1,5 @@
+BoL "inline quote" EoL
+BoL "multi
+line
+quote" EoF
+Empty quote: ""

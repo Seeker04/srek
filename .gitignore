@@ -1,0 +1,12 @@
+# object files
+*.o
+
+# executable
+srek
+
+# ctags index
+tags
+
+# clangd config
+compile_flags.txt
+

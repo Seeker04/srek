@@ -1,0 +1,22 @@
+[
+{
+	"device": "Latop"
+	"type": "computer"
+	"price": 1000
+},
+{
+	"device": "Keyboard"
+	"type": "in"
+	"price": 50
+},
+{
+	"device": "Monitor"
+	"type": "out"
+	"price": 200
+},
+{
+	"device": "Mouse"
+	"type": "in"
+	"price": 20
+},
+]

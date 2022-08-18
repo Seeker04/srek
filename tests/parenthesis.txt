@@ -1,0 +1,7 @@
+Test ints: 10, (20), 30, (40)
+Test strings: (foo), bar, (hello world), baz, ()
+() <-- empty at line start
+empty at line end  --> ()
+Multi line: (This is 1 test
+sentence that spans
+multiple lines.) end
