@@ -20,7 +20,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#if __linux__
 #include <sys/prctl.h>
+#endif
 #include <sys/wait.h>
 #include <unistd.h>
 
@@ -848,7 +850,9 @@ cmd_extcmd_io(const Cmd *cmd)
 			close(inpipefd[0]);
 			close(inpipefd[1]);
 
+#if __linux__
 			prctl(PR_SET_PDEATHSIG, SIGTERM); /* send SIGTERM if the parent dies */
+#endif
 
 			execl("/bin/sh", "sh", "-c", cmd->args[0], (char*)NULL);
 			exit(ERR_EXTCMD_RUN_FAILED); /* exec returned meaning an error occured */
