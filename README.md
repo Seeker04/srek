@@ -13,7 +13,7 @@ This command-line tool is based on Structural Regular Expressions by Rob Pike. Y
 
 Note that this tool is **not** a 100% match to the legacy SRE language developed for [sam](http://sam.cat-v.org/) and [acme](http://acme.cat-v.org/), but srek's language is heavily inspired by them.
 
-This is a really simple program written in a single C file with about 1500 lines of code. The project aims to remain accessible (MIT license), simple, easy to understand and use. More than 2300 test scenarios aim to check correctness. It provides a nice coverage and a 100% result builds a lot of confidence after a new commit. Portability was also a top priority in mind, hence the use of C89 and strict compatibility options. It literally took removing two lines of code and some compile options to build this on Solaris 10 (an OS from 2005).
+This is a really simple program written in a single C file with about 1500 lines of code. The project aims to remain accessible (MIT license), simple, easy to understand and use. More than 2300 test scenarios aim to check correctness. It provides a nice coverage and a 100% result builds a lot of confidence after a new commit. Portability was also a top priority in mind, hence the use of C89 and strict compatibility options. For example, it compiles and works on Solaris 10 (an OS from 2005).
 
 **So what can you use this for?**
 
