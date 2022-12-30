@@ -1274,7 +1274,8 @@ run(void)
 	cleanupsels();
 }
 
-void testinternal(const char *cmdline, bool negated)
+void
+testinternal(const char *cmdline, bool negated)
 {
 	Intval *sel;
 	Intval *prevsel = NULL;
@@ -1307,7 +1308,8 @@ void testinternal(const char *cmdline, bool negated)
 	}
 }
 
-void writeinternal(const char *fname, const char *sep, bool append)
+void
+writeinternal(const char *fname, const char *sep, bool append)
 {
 	FILE *fout;
 	size_t seplen = sep ? strlen(sep) : 0;
