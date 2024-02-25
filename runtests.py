@@ -27,7 +27,6 @@ def testexec(testcase, usevalgrind = False, inputtostdin = False, fromscript = F
     print("[#" + str(index) + "] Testcase:", testcase["name"])
     index += 1
     failed = False
-    timedout = False
 
     stdin = ""
     if inputtostdin:
@@ -61,48 +60,44 @@ def testexec(testcase, usevalgrind = False, inputtostdin = False, fromscript = F
             capture_output = True,
             timeout = testcase.get("timeout", TIMEOUT_TRESHOLD_VALGRIND if usevalgrind else TIMEOUT_TRESHOLD)
         )
+        # uncomment these line for "debugging" output mismatches
+        # print(procinfo.stdout)
+        # print(procinfo.stderr)
+
+        if procinfo.returncode != testcase.get("expectederr", 0):
+            print(Back.RED + Fore.WHITE + "Failed:" + Style.RESET_ALL, "srek exited with error",
+                  str(procinfo.returncode) + ", stderr: ", procinfo.stderr)
+            failed = True
+
+        elif testcase.get("expectederr", 0) != 0 and procinfo.stderr == b"":
+            print(Back.RED + Fore.WHITE + "Failed:" + Style.RESET_ALL, "exited with error, but stderr is empty")
+            failed = True
+
+        elif procinfo.stdout != testcase["expectedout"]:
+            print(Back.RED + Fore.WHITE + "Failed:" + Style.RESET_ALL, "output differs from expected")
+            failed = True
+
+        elif testcase.get("shouldprinterr", False) and procinfo.stderr == b"":
+            print(Back.RED + Fore.WHITE + "Failed:" + Style.RESET_ALL, "some error message was expected but not given")
+            failed = True
+
+        else:
+            i = 0
+            for fname in testcase.get("newfilenames", []):
+                f = open(fname, "r")
+                if not os.path.exists(fname):
+                    print(Back.RED + Fore.WHITE + "Failed:" + Style.RESET_ALL, "output file was not created")
+                    failed = True
+                    break
+                if f.read() != testcase["newfilecontents"][i]:
+                    print(Back.RED + Fore.WHITE + "Failed:" + Style.RESET_ALL, "output file differs from expected")
+                    failed = True
+                    break
+                i += 1
+                f.close()
     except subprocess.TimeoutExpired:
-        timedout = True
-
-    # uncomment these line for "debugging" output mismatches
-    # print(procinfo.stdout)
-    # print(procinfo.stderr)
-
-    if timedout:
         print(Back.RED + Fore.WHITE + "Failed:" + Style.RESET_ALL, "timed out")
-        failedcnt += 1
-
-    elif procinfo.returncode != testcase.get("expectederr", 0):
-        print(Back.RED + Fore.WHITE + "Failed:" + Style.RESET_ALL, "srek exited with error",
-              str(procinfo.returncode) + ", stderr: ", procinfo.stderr)
         failed = True
-
-    elif testcase.get("expectederr", 0) != 0 and procinfo.stderr == b"":
-        print(Back.RED + Fore.WHITE + "Failed:" + Style.RESET_ALL, "exited with error, but stderr is empty")
-        failed = True
-
-    elif procinfo.stdout != testcase["expectedout"]:
-        print(Back.RED + Fore.WHITE + "Failed:" + Style.RESET_ALL, "output differs from expected")
-        failed = True
-
-    elif testcase.get("shouldprinterr", False) and procinfo.stderr == b"":
-        print(Back.RED + Fore.WHITE + "Failed:" + Style.RESET_ALL, "some error message was expected but not given")
-        failed = True
-
-    else:
-        i = 0
-        for fname in testcase.get("newfilenames", []):
-            f = open(fname, "r")
-            if not os.path.exists(fname):
-                print(Back.RED + Fore.WHITE + "Failed:" + Style.RESET_ALL, "output file was not created")
-                failed = True
-                break
-            if f.read() != testcase["newfilecontents"][i]:
-                print(Back.RED + Fore.WHITE + "Failed:" + Style.RESET_ALL, "output file differs from expected")
-                failed = True
-                break
-            i += 1
-            f.close()
 
     for fname in testcase.get("newfilenames", []): # cleanup generated files
         os.remove(fname)
