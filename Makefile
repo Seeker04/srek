@@ -47,7 +47,7 @@ rebuild: clean build
 #============================== Static checks =================================
 
 cppcheck:
-	cppcheck -q --enable=all --language=c --std=$(CSTD) $(SRC) $(INC)
+	cppcheck -q --enable=all --language=c --std=$(CSTD) --suppress=missingIncludeSystem $(SRC) $(INC)
 
 clang-tidy:
 	clang-tidy --checks='clang-analyzer-*' --header-filter=.* --extra-arg="-std=$(CSTD)" $(SRC) --
