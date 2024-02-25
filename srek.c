@@ -1457,7 +1457,7 @@ main(int argc, char *argv[])
 			exit(ERR_NO_CMDLINE);
 		}
 	}
-	/* read commands from last arg (if any) */
+	/* read commands from first non-option arg (if any) */
 	else {
 		if (optind == argc) {
 			fputs("Error: No commandline given!\n", stderr);
