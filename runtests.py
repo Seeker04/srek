@@ -347,7 +347,7 @@ testcases = [
     "name"        : "g, extract json objects, keep 'in' types",
     "cmdline"     : "x/\\\\{[^\\\\}]*\\\\}/ g/\"in\"/",
     "files"       : ["tests/hardware.json"],
-    "expectedout" : b'{\n	"device": "Keyboard"\n	"type": "in"\n	"price": 50\n}{\n	"device": "Mouse"\n	"type": "in"\n	"price": 20\n}'
+    "expectedout" : b'{\n	"device": "Keyboard",\n	"type": "in",\n	"price": 50\n}{\n	"device": "Mouse",\n	"type": "in",\n	"price": 20\n}'
     },
 
 # cmd: v
@@ -385,7 +385,7 @@ testcases = [
     "name"        : "v, extract json objects, discard 'in' types",
     "cmdline"     : "x/\\\\{[^\\\\}]*\\\\}/ v/\"in\"/",
     "files"       : ["tests/hardware.json"],
-    "expectedout" : b'{\n	"device": "Latop"\n	"type": "computer"\n	"price": 1000\n}{\n	"device": "Monitor"\n	"type": "out"\n	"price": 200\n}'
+    "expectedout" : b'{\n	"device": "Latop",\n	"type": "computer",\n	"price": 1000\n}{\n	"device": "Monitor",\n	"type": "out",\n	"price": 200\n}'
     },
 
 # cmd: ~
@@ -539,7 +539,7 @@ testcases = [
     "name"        : 'c, change "in" types to "input" in json (in a dumb way)',
     "cmdline"     : 'L g/"type": "in"/ x/in/ c/input/',
     "files"       : ["tests/hardware.json"],
-    "expectedout" : b'[\n{\n	"device": "Latop"\n	"type": "computer"\n	"price": 1000\n},\n{\n	"device": "Keyboard"\n	"type": "input"\n	"price": 50\n},\n{\n	"device": "Monitor"\n	"type": "out"\n	"price": 200\n},\n{\n	"device": "Mouse"\n	"type": "input"\n	"price": 20\n},\n]\n'
+    "expectedout" : b'[\n{\n	"device": "Latop",\n	"type": "computer",\n	"price": 1000\n},\n{\n	"device": "Keyboard",\n	"type": "input",\n	"price": 50\n},\n{\n	"device": "Monitor",\n	"type": "out",\n	"price": 200\n},\n{\n	"device": "Mouse",\n	"type": "input",\n	"price": 20\n},\n]\n'
     },
 
 # cmd: s
@@ -627,7 +627,7 @@ testcases = [
     "name"        : "i, prefix numbers (prices) with '$'",
     "cmdline"     : "x/[0-9]\\+/ i/$/ u",
     "files"       : ["tests/hardware.json"],
-    "expectedout" : b'[\n{\n	"device": "Latop"\n	"type": "computer"\n	"price": $1000\n},\n{\n	"device": "Keyboard"\n	"type": "in"\n	"price": $50\n},\n{\n	"device": "Monitor"\n	"type": "out"\n	"price": $200\n},\n{\n	"device": "Mouse"\n	"type": "in"\n	"price": $20\n},\n]\n'
+    "expectedout" : b'[\n{\n	"device": "Latop",\n	"type": "computer",\n	"price": $1000\n},\n{\n	"device": "Keyboard",\n	"type": "in",\n	"price": $50\n},\n{\n	"device": "Monitor",\n	"type": "out",\n	"price": $200\n},\n{\n	"device": "Mouse",\n	"type": "in",\n	"price": $20\n},\n]\n'
     },
 
 # cmd: a
@@ -659,7 +659,7 @@ testcases = [
     "name"        : "a, suffix numbers (distances) with 'km'",
     "cmdline"     : "x/[0-9]\\+/ a/km/ u",
     "files"       : ["tests/hardware.json"],
-    "expectedout" : b'[\n{\n	"device": "Latop"\n	"type": "computer"\n	"price": 1000km\n},\n{\n	"device": "Keyboard"\n	"type": "in"\n	"price": 50km\n},\n{\n	"device": "Monitor"\n	"type": "out"\n	"price": 200km\n},\n{\n	"device": "Mouse"\n	"type": "in"\n	"price": 20km\n},\n]\n'
+    "expectedout" : b'[\n{\n	"device": "Latop",\n	"type": "computer",\n	"price": 1000km\n},\n{\n	"device": "Keyboard",\n	"type": "in",\n	"price": 50km\n},\n{\n	"device": "Monitor",\n	"type": "out",\n	"price": 200km\n},\n{\n	"device": "Mouse",\n	"type": "in",\n	"price": 20km\n},\n]\n'
     },
 
 # cmd: S

@@ -1,22 +1,22 @@
 [
 {
-	"device": "Latop"
-	"type": "computer"
+	"device": "Latop",
+	"type": "computer",
 	"price": 1000
 },
 {
-	"device": "Keyboard"
-	"type": "in"
+	"device": "Keyboard",
+	"type": "in",
 	"price": 50
 },
 {
-	"device": "Monitor"
-	"type": "out"
+	"device": "Monitor",
+	"type": "out",
 	"price": 200
 },
 {
-	"device": "Mouse"
-	"type": "in"
+	"device": "Mouse",
+	"type": "in",
 	"price": 20
 },
 ]
