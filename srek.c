@@ -156,7 +156,7 @@ static void    cleanupsels(void);
 static void    compileregexes(void);
 static void    emptyargerr(const Cmd *cmd);
 static void    escapechars(char **str, bool freeorig);
-static void    flipintvals(Intval *bound, Intval **intvs, Intval **lastintv);
+static void    flipintvals(const Intval *bound, Intval **intvs, Intval **lastintv);
 static void    guardinternal(const Cmd *cmd, bool negated);
 static void    parsecmds(char *cmdline);
 static char*   readfullfile(FILE * file, size_t *size);
@@ -458,7 +458,7 @@ cmd_change(const Cmd *cmd)
 	size_t inew = 0;
 	size_t newbuflen = buflen;
 	char *newbuffer;
-	char *tostr = cmd->args[0];
+	const char *tostr = cmd->args[0];
 	size_t tostrlen = tostr ? strlen(tostr) : 0;
 
 	for (sel = sels; sel != NULL; sel = sel->next) {
@@ -510,7 +510,7 @@ cmd_sub(const Cmd *cmd)
 	Intval *lastintv = NULL;
 	unsigned int matchcnt = 0;
 	unsigned int matchcnt_sel;
-	char *tostr = cmd->args[1];
+	const char *tostr = cmd->args[1];
 	size_t tostrlen = tostr ? strlen(tostr) : 0;
 	size_t replacedlen = 0;
 	size_t replacedlen_sel;
@@ -979,7 +979,7 @@ cmd_lines(const Cmd *cmd)
 }
 
 void
-flipintvals(Intval *bound, Intval **intvs, Intval **lastintv)
+flipintvals(const Intval *bound, Intval **intvs, Intval **lastintv)
 {
 	size_t start;
 	size_t end;
