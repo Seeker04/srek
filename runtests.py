@@ -15,6 +15,9 @@ from colorama   import Fore, Back, Style
 TIMEOUT_TRESHOLD          = 5
 TIMEOUT_TRESHOLD_VALGRIND = 30
 
+DUMMY_FILENAME  = "file_that_probably_doesnt_exist"
+TEMP_SCRIPTFILE = "temp_testscript_temp"
+
 VALGRIND_CMD = ["valgrind", "--leak-check=full", "--show-leak-kinds=all", "--error-exitcode=1", "-q"]
 
 passedcnt = 0
@@ -36,7 +39,7 @@ def testexec(testcase, usevalgrind = False, inputtostdin = False, fromscript = F
             return
 
         for fname in testcase.get("files", []):
-            if fname.startswith("file_that_probably_doesnt_exist") or fname == ".":
+            if fname.startswith(DUMMY_FILENAME) or fname == ".":
                 continue
             f = open(fname, "r")
             stdin += f.read()
@@ -46,7 +49,7 @@ def testexec(testcase, usevalgrind = False, inputtostdin = False, fromscript = F
         if testcase.get("script_test_not_applicable", False):
             print(Back.BLUE + Fore.WHITE + "Not applicable" + Style.RESET_ALL)
             return
-        f = open("temp_testscript_temp", "w")
+        f = open(TEMP_SCRIPTFILE, "w")
         f.write(testcase.get("cmdline", ""))
         f.close()
 
@@ -54,7 +57,7 @@ def testexec(testcase, usevalgrind = False, inputtostdin = False, fromscript = F
         procinfo = run(
             args = (VALGRIND_CMD if usevalgrind else []) +
                    ["./srek"] +
-                   testcase.get("options", []) + (["--file=temp_testscript_temp"] if fromscript else []) +
+                   testcase.get("options", []) + (["--file=" + TEMP_SCRIPTFILE] if fromscript else []) +
                    (([testcase.get("cmdline")] if "cmdline" in testcase else []) if not fromscript else []) +
                    (testcase.get("files", []) if not inputtostdin else []),
             input = bytes(stdin, "ASCII") if inputtostdin else None,
@@ -103,7 +106,7 @@ def testexec(testcase, usevalgrind = False, inputtostdin = False, fromscript = F
     for fname in testcase.get("newfilenames", []): # cleanup generated files
         remove(fname)
     if fromscript:
-        remove("temp_testscript_temp")
+        remove(TEMP_SCRIPTFILE)
 
     if failed:
         failedcnt += 1
