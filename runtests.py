@@ -36,7 +36,7 @@ def testexec(testcase, usevalgrind = False, inputtostdin = False, fromscript = F
             return
 
         for fname in testcase.get("files", []):
-            if fname.startswith("file_that_probably_dont_exist") or fname == ".":
+            if fname.startswith("file_that_probably_doesnt_exist") or fname == ".":
                 continue
             f = open(fname, "r")
             stdin += f.read()

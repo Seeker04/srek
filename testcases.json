@@ -58,7 +58,7 @@
     {
     "name"        : "input file does not exist",
     "cmdline"     : "p",
-    "files"       : ["file_that_probably_dont_exist"],
+    "files"       : ["file_that_probably_doesnt_exist"],
     "expectedout" : "",
     "expectederr" : 3,
     "stdin_test_not_applicable" : true
@@ -73,7 +73,7 @@
     },
     {
     "name"        : "script file does not exist",
-    "options"     : ["--file=file_that_probably_dont_exist"],
+    "options"     : ["--file=file_that_probably_doesnt_exist"],
     "cmdline"     : "p",
     "files"       : [],
     "expectedout" : "",
@@ -603,7 +603,7 @@
     },
     {
     "name"        : "r, non-empty arg, file does not exist",
-    "cmdline"     : "r/file_that_probably_dont_exist/",
+    "cmdline"     : "r/file_that_probably_doesnt_exist/",
     "files"       : ["test-input/helloworld.txt"],
     "expectedout" : "",
     "expectederr" : 3
@@ -648,7 +648,7 @@
     },
     {
     "name"        : "R, non-empty arg, file does not exist",
-    "cmdline"     : "R/file_that_probably_dont_exist/",
+    "cmdline"     : "R/file_that_probably_doesnt_exist/",
     "files"       : ["test-input/helloworld.txt"],
     "expectedout" : "",
     "expectederr" : 3
@@ -693,64 +693,64 @@
     },
     {
     "name"            : "w, empty input",
-    "cmdline"         : "w/file_that_probably_dont_exist.txt/sep/",
+    "cmdline"         : "w/file_that_probably_doesnt_exist.txt/sep/",
     "files"           : ["test-input/empty.txt"],
     "expectedout"     : "",
-    "newfilenames"    : ["file_that_probably_dont_exist.txt"],
+    "newfilenames"    : ["file_that_probably_doesnt_exist.txt"],
     "newfilecontents" : [""]
     },
     {
     "name"            : "w, on full selection",
     "options"         : ["-n"],
-    "cmdline"         : "w/file_that_probably_dont_exist.txt/sep/",
+    "cmdline"         : "w/file_that_probably_doesnt_exist.txt/sep/",
     "files"           : ["test-input/helloworld.txt"],
     "expectedout"     : "",
-    "newfilenames"    : ["file_that_probably_dont_exist.txt"],
+    "newfilenames"    : ["file_that_probably_doesnt_exist.txt"],
     "newfilecontents" : ["hello world!"]
     },
     {
     "name"            : "w, output all numbers with empty separator",
     "options"         : ["-n"],
-    "cmdline"         : "x/[0-9]+/ w/file_that_probably_dont_exist.txt//",
+    "cmdline"         : "x/[0-9]+/ w/file_that_probably_doesnt_exist.txt//",
     "files"           : ["test-input/code.py"],
     "expectedout"     : "",
-    "newfilenames"    : ["file_that_probably_dont_exist.txt"],
+    "newfilenames"    : ["file_that_probably_doesnt_exist.txt"],
     "newfilecontents" : ["1020304250"]
     },
     {
     "name"            : "w, output all numbers with triple comma separator",
     "options"         : ["-n"],
-    "cmdline"         : "x/[0-9]+/ w/file_that_probably_dont_exist.txt/,,,/",
+    "cmdline"         : "x/[0-9]+/ w/file_that_probably_doesnt_exist.txt/,,,/",
     "files"           : ["test-input/code.py"],
     "expectedout"     : "",
-    "newfilenames"    : ["file_that_probably_dont_exist.txt"],
+    "newfilenames"    : ["file_that_probably_doesnt_exist.txt"],
     "newfilecontents" : ["10,,,20,,,30,,,42,,,50"]
     },
     {
     "name"            : "w, output all numbers with newline separator",
     "options"         : ["-n"],
-    "cmdline"         : "x/[0-9]+/ w/file_that_probably_dont_exist.txt/\n/",
+    "cmdline"         : "x/[0-9]+/ w/file_that_probably_doesnt_exist.txt/\n/",
     "files"           : ["test-input/code.py"],
     "expectedout"     : "",
-    "newfilenames"    : ["file_that_probably_dont_exist.txt"],
+    "newfilenames"    : ["file_that_probably_doesnt_exist.txt"],
     "newfilecontents" : ["10\n20\n30\n42\n50"]
     },
     {
     "name"            : "w, consecutive w's to same file",
     "options"         : ["-n"],
-    "cmdline"         : "x/[0-9]+/ w/file_that_probably_dont_exist.txt/,,,/ w/file_that_probably_dont_exist.txt/\n/",
+    "cmdline"         : "x/[0-9]+/ w/file_that_probably_doesnt_exist.txt/,,,/ w/file_that_probably_doesnt_exist.txt/\n/",
     "files"           : ["test-input/code.py"],
     "expectedout"     : "",
-    "newfilenames"    : ["file_that_probably_dont_exist.txt"],
+    "newfilenames"    : ["file_that_probably_doesnt_exist.txt"],
     "newfilecontents" : ["10\n20\n30\n42\n50"]
     },
     {
     "name"            : "w, consecutive w's to separate files",
     "options"         : ["-n"],
-    "cmdline"         : "x/[0-9]+/ w/file_that_probably_dont_exist.txt/,,,/ w/file_that_probably_dont_exist2.txt/\n/",
+    "cmdline"         : "x/[0-9]+/ w/file_that_probably_doesnt_exist.txt/,,,/ w/file_that_probably_doesnt_exist2.txt/\n/",
     "files"           : ["test-input/code.py"],
     "expectedout"     : "",
-    "newfilenames"    : ["file_that_probably_dont_exist.txt", "file_that_probably_dont_exist2.txt"],
+    "newfilenames"    : ["file_that_probably_doesnt_exist.txt", "file_that_probably_doesnt_exist2.txt"],
     "newfilecontents" : ["10,,,20,,,30,,,42,,,50", "10\n20\n30\n42\n50"]
     },
 
@@ -763,64 +763,64 @@
     },
     {
     "name"            : "W, empty input",
-    "cmdline"         : "W/file_that_probably_dont_exist.txt/sep/",
+    "cmdline"         : "W/file_that_probably_doesnt_exist.txt/sep/",
     "files"           : ["test-input/empty.txt"],
     "expectedout"     : "",
-    "newfilenames"    : ["file_that_probably_dont_exist.txt"],
+    "newfilenames"    : ["file_that_probably_doesnt_exist.txt"],
     "newfilecontents" : [""]
     },
     {
     "name"            : "W, on full selection",
     "options"         : ["-n"],
-    "cmdline"         : "W/file_that_probably_dont_exist.txt/sep/",
+    "cmdline"         : "W/file_that_probably_doesnt_exist.txt/sep/",
     "files"           : ["test-input/helloworld.txt"],
     "expectedout"     : "",
-    "newfilenames"    : ["file_that_probably_dont_exist.txt"],
+    "newfilenames"    : ["file_that_probably_doesnt_exist.txt"],
     "newfilecontents" : ["hello world!"]
     },
     {
     "name"            : "W, output all numbers with empty separator",
     "options"         : ["-n"],
-    "cmdline"         : "x/[0-9]+/ W/file_that_probably_dont_exist.txt//",
+    "cmdline"         : "x/[0-9]+/ W/file_that_probably_doesnt_exist.txt//",
     "files"           : ["test-input/code.py"],
     "expectedout"     : "",
-    "newfilenames"    : ["file_that_probably_dont_exist.txt"],
+    "newfilenames"    : ["file_that_probably_doesnt_exist.txt"],
     "newfilecontents" : ["1020304250"]
     },
     {
     "name"            : "W, output all numbers with triple comma separator",
     "options"         : ["-n"],
-    "cmdline"         : "x/[0-9]+/ W/file_that_probably_dont_exist.txt/,,,/",
+    "cmdline"         : "x/[0-9]+/ W/file_that_probably_doesnt_exist.txt/,,,/",
     "files"           : ["test-input/code.py"],
     "expectedout"     : "",
-    "newfilenames"    : ["file_that_probably_dont_exist.txt"],
+    "newfilenames"    : ["file_that_probably_doesnt_exist.txt"],
     "newfilecontents" : ["10,,,20,,,30,,,42,,,50"]
     },
     {
     "name"            : "W, output all numbers with newline separator",
     "options"         : ["-n"],
-    "cmdline"         : "x/[0-9]+/ W/file_that_probably_dont_exist.txt/\n/",
+    "cmdline"         : "x/[0-9]+/ W/file_that_probably_doesnt_exist.txt/\n/",
     "files"           : ["test-input/code.py"],
     "expectedout"     : "",
-    "newfilenames"    : ["file_that_probably_dont_exist.txt"],
+    "newfilenames"    : ["file_that_probably_doesnt_exist.txt"],
     "newfilecontents" : ["10\n20\n30\n42\n50"]
     },
     {
     "name"            : "W, consecutive W's to same file",
     "options"         : ["-n"],
-    "cmdline"         : "x/[0-9]+/ W/file_that_probably_dont_exist.txt/,,,/ W/file_that_probably_dont_exist.txt/\n/",
+    "cmdline"         : "x/[0-9]+/ W/file_that_probably_doesnt_exist.txt/,,,/ W/file_that_probably_doesnt_exist.txt/\n/",
     "files"           : ["test-input/code.py"],
     "expectedout"     : "",
-    "newfilenames"    : ["file_that_probably_dont_exist.txt"],
+    "newfilenames"    : ["file_that_probably_doesnt_exist.txt"],
     "newfilecontents" : ["10,,,20,,,30,,,42,,,5010\n20\n30\n42\n50"]
     },
     {
     "name"            : "W, consecutive W's to separate files",
     "options"         : ["-n"],
-    "cmdline"         : "x/[0-9]+/ W/file_that_probably_dont_exist.txt/,,,/ W/file_that_probably_dont_exist2.txt/\n/",
+    "cmdline"         : "x/[0-9]+/ W/file_that_probably_doesnt_exist.txt/,,,/ W/file_that_probably_doesnt_exist2.txt/\n/",
     "files"           : ["test-input/code.py"],
     "expectedout"     : "",
-    "newfilenames"    : ["file_that_probably_dont_exist.txt", "file_that_probably_dont_exist2.txt"],
+    "newfilenames"    : ["file_that_probably_doesnt_exist.txt", "file_that_probably_doesnt_exist2.txt"],
     "newfilecontents" : ["10,,,20,,,30,,,42,,,50", "10\n20\n30\n42\n50"]
     },
 
