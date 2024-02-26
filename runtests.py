@@ -195,6 +195,11 @@ else:
         print("[sanitized, stdin, script] ", end="")
         testexec(testcase, inputtostdin=True, fromscript=True)
 
+    # Do not leave the user with the sanitized build
+
+    print("\n*************************** Restoring release build ****************************")
+    system("make rebuild")
+
     # Results
 
     print("\n*********************************** Results ************************************")
