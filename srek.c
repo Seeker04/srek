@@ -26,6 +26,8 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
+#define VERSION "1.0"
+
 #define ARRAY_SIZE(arr) (sizeof(arr)/sizeof(*(arr)))
 
 #define ERR_NO_CMDLINE          1
@@ -40,8 +42,6 @@
 #define RE_SUBMATCH_CNT 9     /* support up to 9 submatches: \1,...,\9 */
 #define ERRBUF_SIZE     256
 #define READ_CHUNK_SIZE 65536 /* 64 KB */
-
-static const char *VERSION = "srek - Structural RegEx Kit\nVersion: v1.0";
 
 static const char *HELP[] = {
 	"Usage: srek [OPTION...] COMMAND-LINE [FILE...]\n\n"
@@ -1443,7 +1443,7 @@ main(int argc, char *argv[])
 			regnewline = true;
 			break;
 		case 'v':
-			puts(VERSION);
+			puts("srek - Structural RegEx Kit\nVersion: v"VERSION);
 			free(scriptfile);
 			return EXIT_SUCCESS;
 		default: break;

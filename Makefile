@@ -3,14 +3,15 @@
 
 #================================ Parameters ==================================
 
-CC        ?= cc  # use $CC if set, otherwise fall back to cc
-CSTD       = c89
-WFLAGS     = -ansi -pedantic -pedantic-errors -W -Wall -Wextra -Wconversion -Wfloat-equal -Wshadow
-OFLAGS     = -O3
-DFLAGS     = -D_POSIX_C_SOURCE=2
-DEBUGFLAGS = -Og -ggdb3 -fno-inline -fno-eliminate-unused-debug-symbols
-SFLAGS     = -fsanitize=address,leak,undefined
-INSTALLDIR = /usr/local/bin
+CC            ?= cc  # use $CC if set, otherwise fall back to cc
+CSTD           = c89
+WFLAGS         = -ansi -pedantic -pedantic-errors -W -Wall -Wextra -Wconversion -Wfloat-equal -Wshadow
+OFLAGS         = -O3
+DFLAGS         = -D_POSIX_C_SOURCE=2
+DEBUGFLAGS     = -Og -ggdb3 -fno-inline -fno-eliminate-unused-debug-symbols
+SFLAGS         = -fsanitize=address,leak,undefined
+INSTALLDIR     = /usr/local/bin
+INSTALLDIR_MAN = /usr/local/share/man/man1
 
 CFLAGS  = -std=$(CSTD) $(WFLAGS) $(OFLAGS) $(DFLAGS)
 LDFLAGS =
@@ -20,6 +21,7 @@ SRC = $(wildcard *.c)
 OBJ = $(SRC:%.c=%.o)
 BIN = srek
 
+VERSION = ${shell sed -n 's/^#define VERSION "\([^"]*\)"$$/\1/p' srek.c}
 
 #================================== Build =====================================
 
@@ -61,9 +63,10 @@ test:
 #============================ Install/uninstall ===============================
 
 install: $(BIN)
-	mkdir -p $(INSTALLDIR)
-	cp -f $(BIN) $(INSTALLDIR)
-	chmod 755 $(INSTALLDIR)/$(BIN)
+	install -D --mode=755 srek $(INSTALLDIR)/srek
+	mkdir -p $(INSTALLDIR_MAN)
+	sed 's/VERSION/$(VERSION)/' < srek.1 > $(INSTALLDIR_MAN)/srek.1
+	chmod 644 $(INSTALLDIR_MAN)/srek.1
 
 uninstall:
 	rm -f $(INSTALLDIR)/$(BIN)
