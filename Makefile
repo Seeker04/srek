@@ -20,8 +20,10 @@ INC = $(wildcard *.h)
 SRC = $(wildcard *.c)
 OBJ = $(SRC:%.c=%.o)
 BIN = srek
+MAN = srek.1
 
 VERSION = ${shell sed -n 's/^#define VERSION "\([^"]*\)"$$/\1/p' srek.c}
+
 
 #================================== Build =====================================
 
@@ -60,14 +62,16 @@ clang-tidy:
 test:
 	./runtests.py
 
+
 #============================ Install/uninstall ===============================
 
 install: $(BIN)
-	install -D --mode=755 srek $(INSTALLDIR)/srek
+	install -D --mode=755 $(BIN) $(INSTALLDIR)/$(BIN)
 	mkdir -p $(INSTALLDIR_MAN)
-	sed 's/VERSION/$(VERSION)/' < srek.1 > $(INSTALLDIR_MAN)/srek.1
-	chmod 644 $(INSTALLDIR_MAN)/srek.1
+	sed 's/VERSION/$(VERSION)/' < $(MAN) > $(INSTALLDIR_MAN)/$(MAN)
+	chmod 644 $(INSTALLDIR_MAN)/$(MAN)
 
 uninstall:
 	rm -f $(INSTALLDIR)/$(BIN)
+	rm -f $(INSTALLDIR_MAN)/$(MAN)
 
