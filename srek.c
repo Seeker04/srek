@@ -7,12 +7,6 @@
  * For usage details, run with --help or see README.md
  */
 
-/*
- * TODO: cmd_sub: handle capture groups with pmatch[1-9]
- * TODO: if input is larger than 139264 bytes, then write() hangs in cmd_extcmd_io()
- *       e.g.: ./srek '|/tr a-z A-Z/' tests/large_input.txt
- */
-
 #include <ctype.h>
 #include <getopt.h>
 #include <regex.h>

@@ -141,11 +141,6 @@ Feel free to create a merge request for any contribution, but please, consider t
 
 Note: executing the runtime tests requires Python3.
 
-## TODO
-
-- Support capture group substitution with the `s` command (up to 9 groups like sed).
-- If input is larger than 139264 bytes, then `write()` hangs in `cmd_extcmd_io()` for some reason, e.g.: `srek '|/tr a-z A-Z/' tests/large_input.txt`
-
 ## Similar projects
 
 - [sregx](https://github.com/zyedidia/sregx) : a similar tool written in Go
