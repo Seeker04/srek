@@ -20,7 +20,7 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
-#define VERSION "1.0"
+#define VERSION "1.1"
 
 #define ARRAY_SIZE(arr) (sizeof(arr)/sizeof(*(arr)))
 
