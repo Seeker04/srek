@@ -4,7 +4,7 @@
  * MIT License
  * Copyright (c) 2022 Barnabás Zahorán, see LICENSE
  *
- * For usage details, run with --help or see README.md
+ * For usage details, run with --help, see srek(1) or the README.md
  */
 
 #include <ctype.h>
