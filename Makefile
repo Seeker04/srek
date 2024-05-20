@@ -5,7 +5,7 @@
 
 CC            ?= cc  # use $CC if set, otherwise fall back to cc
 CSTD           = c89
-WFLAGS         = -ansi -pedantic -pedantic-errors -W -Wall -Wextra -Wconversion -Wfloat-equal -Wshadow
+WFLAGS         = -ansi -pedantic -pedantic-errors -Wall -Wextra -Wconversion -Wfloat-equal -Wshadow
 OFLAGS         = -O3
 DFLAGS         = -D_POSIX_C_SOURCE=2
 DEBUGFLAGS     = -Og -ggdb3 -fno-inline -fno-eliminate-unused-debug-symbols
