@@ -139,7 +139,18 @@ Feel free to create a merge request for any contribution, but please, consider t
 - Running `$ make test` must continue to give a 100% success result.
 - Preferably no new warning is introduced for cc, clang-tidy or cppcheck. There are already a few, so if you think, yours are reasonable too, feel free to negotiate;)
 
-Note: executing the runtime tests requires Python3.
+**Note:** the static checks have the following dependencies:
+```bash
+cppcheck
+clang-tidy
+```
+Runtime tests need:
+```bash
+valgrind
+python3
+colorama           # python package, install with OS package manager or pip3
+libsanitizer-devel # sanitized execution needs this separate pkg on some distros
+```
 
 ## Similar projects
 
