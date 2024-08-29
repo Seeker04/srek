@@ -1,11 +1,8 @@
 .TH SREK 1 srek\-VERSION
-
 .SH NAME
 srek \- Structural RegEx Kit
-
 .SH SYNOPSIS
 \fBsrek\fR [\fIOPTION\fR]... \fICOMMAND-LINE\fR [\fIFILE\fR]...
-
 .SH DESCRIPTION
 \fIsrek\fR is a sed-like stream editor based on Rob Pike's structural regular expressions. Its main distinction from
 .BR sed (1)
@@ -15,7 +12,6 @@ The text processing and manipulation language of
 .I srek
 can be used interactively, in pipelines or called from other unix tools such as
 .BR vi (1).
-
 .SH OPTIONS
 .TP
 .B \-B, --basic-regexp
@@ -41,89 +37,178 @@ Match-any-character operators don't match a newline
 .TP
 .B \-v, --version
 Display version, then exit
-
 .SH COMMAND SYNOPSIS
 .I COMMAND-LINE
 may contain a list of commands separated by optional whitespaces:
-
-\fBx\fR/\fIregexp\fR/               Extract matches from input to a set of selections
+.TP
+\fBx\fR/\fIregexp\fR/
+.RI
+Extract matches from input to a set of selections
+.RI
+.TP
+\fBy\fR/\fIregexp\fR/
+.RI
+Like \fBx\fR, but extract the non-matching parts instead
+.RI
+.TP
+\fBg\fR/\fIregexp\fR/
+.RI
+Filter selections with \fIregexp\fR
+.RI
+.TP
+\fBv\fR/\fIregexp\fR/
+.RI
+Like \fBg\fR, but keep the non-matching selections instead
+.RI
+.TP
+\fB~\fR
+.RI
+Flip selections (everything selected becomes unselected and vice versa)
+.RI
+.TP
+\fBL\fR
+.RI
+Extract lines, shorthand for x/[^\\n]*\\n/
+.RI
+.TP
+\fBu\fR
+.RI
+Undo all selections
+.RI
+.TP
+\fBp\fR
+.RI
+Print all selection to \fIstdout\fR
+.RI
+.TP
+\fBd\fR
+.RI
+Delete selected text, selection resets
+.RI
+.TP
+\fBc\fR/\fIreplacement\fR/
+.RI
+Replace each selection with \fIreplacement\fR, selection resets
+.RI
+.TP
+\fBs\fR/\fIregexp\fR/\fIreplacement\fR/
+.RI
+Replace matching parts of each selection with \fIreplacement\fR
+.RI
+.TP
+\fBi\fR/\fIprefix\fR/
+.RI
+Prefix selections with \fIprefix\fR, shorthand for s/^/text/
+.RI
+.TP
+\fBa\fR/\fIsuffix\fR/
+.RI
+Suffix selections with \fIsuffix\fR, shorthand for s/$/text/
+.RI
+.TP
+\fBS\fR/\fIprefix\fR/\fIsuffix\fR/
+.RI
+Surround selections, shorthand for i/prefix/a/suffix/
+.RI
+.TP
+\fBr\fR/\fIfile\fR/
+.RI
+Replace selections with contents read from \fIfile\fR
+.RI
+.TP
+\fBR\fR/\fIfile\fR/
+.RI
+Like \fBr\fR, but append instead
+.RI
+.TP
+\fBw\fR/\fIfile\fR/\fIsep\fR/
+.RI
+Write selections to \fIfile\fR, each separated by \fIsep\fR
+.RI
+.TP
+\fBW\fR/\fIfile\fR/\fIsep\fR/
+.RI
+Like \fBw\fR, but append to \fIfile\fR instead
+.RI
+.TP
+\fB!\fR/\fIcmd\fR/
+.RI
+Run \fIcmd\fR once for each selection
+.RI
+.TP
+\fB<\fR/\fIcmd\fR/
+.RI
+Run \fIcmd\fR once, and replace selections with its \fIstdout\fR
+.RI
+.TP
+\fB>\fR/\fIcmd\fR/
+.RI
+Run \fIcmd\fR once for each selection by passing the selection to its \fIstdin\fR
+.RI
+.TP
+\fB|\fR/\fIcmd\fR/
+.RI
+Run \fIcmd\fR on each selection by taking it as \fIstdin\fR and replacing it with \fIstdout\fR
+.RI
+.TP
+\fBt\fR/\fIcmd\fR/
+.RI
+Keep only those selections for which \fIcmd\fR returned with success (zero)
+.RI
+.TP
+\fBT\fR/\fIcmd\fR/
+.RI
+Keep only those selections for which \fIcmd\fR returned with error (non-zero)
+.RI
 .P
-\fBy\fR/\fIregexp\fR/               Like \fBx\fR, but extract the non-matching parts instead
-.P
-\fBg\fR/\fIregexp\fR/               Filter selections with \fIregexp\fR
-.P
-\fBv\fR/\fIregexp\fR/               Like \fBg\fR, but keep the non-matching selections instead
-.P
-\fB~\fR\                       Flip selections (everything selected becomes unselected and vice versa)
-.P
-\fBL\fR                       Extract lines, shorthand for x/[^\\n]*\\n/
-.P
-\fBu\fR                       Undo all selections
-.P
-\fBp\fR                       Print all selection to \fIstdout\fR
-.P
-\fBd\fR                       Delete selected text, selection resets
-.P
-\fBc\fR/\fIreplacement\fR/          Replace each selection with \fIreplacement\fR, selection resets
-.P
-\fBs\fR/\fIregexp\fR/\fIreplacement\fR/   Replace matching parts of each selection with \fIreplacement\fR
-.P
-\fBi\fR/\fIprefix\fR/               Prefix selections with \fIprefix\fR, shorthand for s/^/text/
-.P
-\fBa\fR/\fIsuffix\fR/               Suffix selections with \fIsuffix\fR, shorthand for s/$/text/
-.P
-\fBS\fR/\fIprefix\fR/\fIsuffix\fR/        Surround selections, shorthand for i/prefix/a/suffix/
-.P
-\fBr\fR/\fIfile\fR/                 Replace selections with contents read from \fIfile\fR
-.P
-\fBR\fR/\fIfile\fR/                 Like \fBr\fR, but append instead
-.P
-\fBw\fR/\fIfile\fR/\fIsep\fR/             Write selections to \fIfile\fR, each separated by \fIsep\fR
-.P
-\fBW\fR/\fIfile\fR/\fIsep\fR/             Like \fBw\fR, but append to \fIfile\fR instead
-.P
-\fB!\fR/\fIcmd\fR/                  Run \fIcmd\fR once for each selection
-.P
-\fB<\fR/\fIcmd\fR/                  Run \fIcmd\fR once, and replace selections with its \fIstdout\fR
-.P
-\fB>\fR/\fIcmd\fR/                  Run \fIcmd\fR once for each selection by passing the selection to its \fIstdin\fR
-.P
-\fB|\fR/\fIcmd\fR/                  Run \fIcmd\fR on each selection by taking it as \fIstdin\fR and replacing it with \fIstdout\fR
-.P
-\fBt\fR/\fIcmd\fR/                  Keep only those selections for which \fIcmd\fR returned with success (zero)
-.P
-\fBT\fR/\fIcmd\fR/                  Keep only those selections for which \fIcmd\fR returned with error (non-zero)
-.P
-                        Note: \fIcmd\fR must be a valid shell command
-.P
-\fB#\fR\fIcomment\fR                Comment till next newline
-
+\fBNote:\fR \fIcmd\fR must be a valid shell command
+.TP
+\fB#\fR\fIcomment\fR
+.RI
+Comment till next newline
+.RI
 .SH EXAMPLES
-
-srek 'x/#[^\\n]*\\n/ d'                         Delete Python comments
-
-srek 'x/#[^\\n]*\\n/ w/commented.txt/\\n/'       Output comments separated by newlines to a new file
-
-srek 'y/#[^\\n]*\\n/ w/not_commented.txt/\\n/'   Same, except now output the not commented parts
-
-srek 'x/[a-zA-Z]+:/ S/**/**/ u'               Turn words followed by colons to bold for Markdown
-
-srek 'x/todo|readme|license/ |/tr a-z A-Z/'   Turn some words to uppercase
-
-srek 's/ +/ /                                 Condense consecutive spaces to a single one
-
+.TP
+srek 'x/#[^\\n]*\\n/ d'
+.RI
+Delete Python comments
+.RI
+.TP
+srek 'x/#[^\\n]*\\n/ w/commented.txt/\\n/'
+.RI
+Output comments separated by newlines to a new file
+.RI
+.TP
+srek 'y/#[^\\n]*\\n/ w/not_commented.txt/\\n/'
+.RI
+Same, except now output the not commented parts
+.RI
+.TP
+srek 'x/[a-zA-Z]+:/ S/**/**/ u'
+.RI
+Turn words followed by colons to bold for Markdown
+.RI
+.TP
+srek 'x/todo|readme|license/ |/tr a-z A-Z/'
+.RI
+Turn some words to uppercase
+.RI
+.TP
+srek 's/ +/ /'
+.RI
+Condense consecutive spaces to a single one
+.RI
 .SH SEE ALSO
 .BR ed (1),
 .BR ex (1),
 .BR sed (1),
 .BR grep (1)
-
 .SH BUGS
 Please report bugs by creating issues at
-.BR <https://github.com/seeker04/srek>
-
+.BR <https://github.com/Seeker04/srek/issues>
 .SH AUTHOR
-srek was created by Barnabás Zahorán <zahoranb@proton.me>. For a comprehensive list of contributors, please visit <https://github.com/seeker04/srek>.
-
+srek was created by Barnabás Zahorán <zahoranb@proton.me>.
+.P
+For a comprehensive list of contributors, please visit \fB<https://github.com/seeker04/srek>\fR.
 .SH COPYRIGHT
 MIT License, Copyright (c) 2022-2024 Barnabás Zahorán, see LICENSE
