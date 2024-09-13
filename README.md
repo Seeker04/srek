@@ -128,7 +128,7 @@ T/cmd/                  Keep only those selections for which <cmd> returned with
 
 `s/ +/ /` condense consecutive spaces to a single one
 
-Further examples can be found [among the tests](runtests.py).
+Further examples can be found [among the tests](testcases.json).
 
 ## For contributors
 
