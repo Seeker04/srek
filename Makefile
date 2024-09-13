@@ -39,7 +39,7 @@ build-sanitized: rebuild
 $(BIN): $(OBJ)
 	$(CC) $(LDFLAGS) $(OBJ) -o $(BIN)
 
-%.o : %.c
+%.o: %.c
 	$(CC) -c $(CFLAGS) $< -o $@
 
 clean:
