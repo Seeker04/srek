@@ -116,101 +116,102 @@ def testexec(testcase, usevalgrind = False, inputtostdin = False, fromscript = F
         passedcnt += 1
 
 
-try:
-    json_file = open("testcases.json")
-    testcases = load(json_file)
-except:
-    print(Back.RED + Fore.WHITE + "FATAL ERROR: could not parse testcases.json!" + Style.RESET_ALL)
-    exit(2)
-else:
-    print("******************************** Building srek *********************************")
-    system("make rebuild")
-
-    # Release run
-
-    print("\n*********************** Running release, input as files ************************")
-    for testcase in testcases:
-        print("[release] ", end="")
-        testexec(testcase)
-
-    print("\n*********************** Running release, input as stdin ************************")
-    for testcase in testcases:
-        print("[release, stdin] ", end="")
-        testexec(testcase, inputtostdin=True)
-
-    print("\n***************** Running release, input as files, from script *****************")
-    for testcase in testcases:
-        print("[release, script] ", end="")
-        testexec(testcase, fromscript=True)
-
-    print("\n***************** Running release, input as stdin, from script *****************")
-    for testcase in testcases:
-        print("[release, stdin, script] ", end="")
-        testexec(testcase, inputtostdin=True, fromscript=True)
-
-    # Valgrind run
-
-    print("\n*********************** Running valgrind, input as files ***********************")
-    for testcase in testcases:
-        print("[valgrind] ", end="")
-        testexec(testcase, usevalgrind=True)
-
-    print("\n*********************** Running valgrind, input as stdin ***********************")
-    for testcase in testcases:
-        print("[valgrind, stdin] ", end="")
-        testexec(testcase, usevalgrind=True, inputtostdin=True)
-
-    print("\n**************** Running valgrind, input as files, from script *****************")
-    for testcase in testcases:
-        print("[valgrind, script] ", end="")
-        testexec(testcase, usevalgrind=True, fromscript=True)
-
-    print("\n**************** Running valgrind, input as stdin, from script *****************")
-    for testcase in testcases:
-        print("[valgrind, stdin, script] ", end="")
-        testexec(testcase, usevalgrind=True, inputtostdin=True, fromscript=True)
-
-    # Sanitized run
-
-    print("\n*************************** Building sanitized srek ****************************")
-    system("make build-sanitized")
-
-    print("\n********************** Running sanitized, input as files ***********************")
-    for testcase in testcases:
-        print("[sanitized] ", end="")
-        testexec(testcase)
-
-    print("\n********************** Running sanitized, input as stdin ***********************")
-    for testcase in testcases:
-        print("[sanitized, stdin] ", end="")
-        testexec(testcase, inputtostdin=True)
-
-    print("\n**************** Running sanitized, input as files, from script ****************")
-    for testcase in testcases:
-        print("[sanitized, script] ", end="")
-        testexec(testcase, fromscript=True)
-
-    print("\n**************** Running sanitized, input as stdin, from script ****************")
-    for testcase in testcases:
-        print("[sanitized, stdin, script] ", end="")
-        testexec(testcase, inputtostdin=True, fromscript=True)
-
-    # Do not leave the user with the sanitized build
-
-    print("\n*************************** Restoring release build ****************************")
-    system("make rebuild")
-
-    # Results
-
-    print("\n*********************************** Results ************************************")
-    print("Passed:", passedcnt)
-    print("Failed:", failedcnt)
-    print("Success: " + Style.BRIGHT + format(passedcnt / (passedcnt + failedcnt) * 100, ".2f"), "%" + Style.RESET_ALL)
-
-    if len(failedlist) != 0:
-        print("\nThe following testcases failed:")
-        for fail in failedlist:
-            print("[#" + str(fail["index"]) + "]", fail["name"])
-
-    exit(0 if failedcnt == 0 else 1)
+if __name__ == "__main__":
+    try:
+        json_file = open("testcases.json")
+        testcases = load(json_file)
+    except:
+        print(Back.RED + Fore.WHITE + "FATAL ERROR: could not parse testcases.json!" + Style.RESET_ALL)
+        exit(2)
+    else:
+        print("******************************** Building srek *********************************")
+        system("make rebuild")
+    
+        # Release run
+    
+        print("\n*********************** Running release, input as files ************************")
+        for testcase in testcases:
+            print("[release] ", end="")
+            testexec(testcase)
+    
+        print("\n*********************** Running release, input as stdin ************************")
+        for testcase in testcases:
+            print("[release, stdin] ", end="")
+            testexec(testcase, inputtostdin=True)
+    
+        print("\n***************** Running release, input as files, from script *****************")
+        for testcase in testcases:
+            print("[release, script] ", end="")
+            testexec(testcase, fromscript=True)
+    
+        print("\n***************** Running release, input as stdin, from script *****************")
+        for testcase in testcases:
+            print("[release, stdin, script] ", end="")
+            testexec(testcase, inputtostdin=True, fromscript=True)
+    
+        # Valgrind run
+    
+        print("\n*********************** Running valgrind, input as files ***********************")
+        for testcase in testcases:
+            print("[valgrind] ", end="")
+            testexec(testcase, usevalgrind=True)
+    
+        print("\n*********************** Running valgrind, input as stdin ***********************")
+        for testcase in testcases:
+            print("[valgrind, stdin] ", end="")
+            testexec(testcase, usevalgrind=True, inputtostdin=True)
+    
+        print("\n**************** Running valgrind, input as files, from script *****************")
+        for testcase in testcases:
+            print("[valgrind, script] ", end="")
+            testexec(testcase, usevalgrind=True, fromscript=True)
+    
+        print("\n**************** Running valgrind, input as stdin, from script *****************")
+        for testcase in testcases:
+            print("[valgrind, stdin, script] ", end="")
+            testexec(testcase, usevalgrind=True, inputtostdin=True, fromscript=True)
+    
+        # Sanitized run
+    
+        print("\n*************************** Building sanitized srek ****************************")
+        system("make build-sanitized")
+    
+        print("\n********************** Running sanitized, input as files ***********************")
+        for testcase in testcases:
+            print("[sanitized] ", end="")
+            testexec(testcase)
+    
+        print("\n********************** Running sanitized, input as stdin ***********************")
+        for testcase in testcases:
+            print("[sanitized, stdin] ", end="")
+            testexec(testcase, inputtostdin=True)
+    
+        print("\n**************** Running sanitized, input as files, from script ****************")
+        for testcase in testcases:
+            print("[sanitized, script] ", end="")
+            testexec(testcase, fromscript=True)
+    
+        print("\n**************** Running sanitized, input as stdin, from script ****************")
+        for testcase in testcases:
+            print("[sanitized, stdin, script] ", end="")
+            testexec(testcase, inputtostdin=True, fromscript=True)
+    
+        # Do not leave the user with the sanitized build
+    
+        print("\n*************************** Restoring release build ****************************")
+        system("make rebuild")
+    
+        # Results
+    
+        print("\n*********************************** Results ************************************")
+        print("Passed:", passedcnt)
+        print("Failed:", failedcnt)
+        print("Success: " + Style.BRIGHT + format(passedcnt / (passedcnt + failedcnt) * 100, ".2f"), "%" + Style.RESET_ALL)
+    
+        if len(failedlist) != 0:
+            print("\nThe following testcases failed:")
+            for fail in failedlist:
+                print("[#" + str(fail["index"]) + "]", fail["name"])
+    
+        exit(0 if failedcnt == 0 else 1)
 
